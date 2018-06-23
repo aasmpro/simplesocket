@@ -4,10 +4,7 @@ import datetime
 
 def main():
     server = SimpleServerSocket.socket_from_sys()
-    print("""
-    {}
-    server started on {}:{}
-    """.format(datetime.datetime.now(), server.host, server.port))
+    print("\n\t{}\n\tserver started on {}:{}\n".format(datetime.datetime.now(), server.host, server.port))
     server.listen()
 
     while True:
@@ -23,10 +20,9 @@ def main():
                     msg = 'time is {}'.format(datetime.datetime.now().time())
 
                 client.send(msg)
-
         except:
             pass
-
+        
         client.close()
 
 
