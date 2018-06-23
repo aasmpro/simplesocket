@@ -1,51 +1,34 @@
-"""
-    created by aa.smpro@gmail.com
-"""
-import socket
+from SimpleSocket import SimpleServerSocket
 import datetime
-import sys
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
-port = 9999
 
-try:
-    if ':' in sys.argv[1]:
-        host = (sys.argv[1]).split(':')[0]
-        port = (sys.argv[1]).split(':')[1]
-    elif (sys.argv[1]).isdigit():
-        port = sys.argv[1]
-    else:
-        host = sys.argv[1]
-except:
-    try:
-        if sys.argv[1]:
-            print("Wrong host/port format.")
-    except:
-        pass
+def main():
+    server = SimpleServerSocket.socket_from_sys()
+    print("""
+    {}
+    server started on {}:{}
+    """.format(datetime.datetime.now(), server.host, server.port))
+    server.listen()
 
-server_socket.bind((host, int(port)))
-server_socket.listen()
-print("""
-{}
-server started on {}:{}
-""".format(datetime.datetime.now(), host, port))
+    while True:
+        client = server.accept()
+        try:
+            cmd = client.receive()
+            if cmd:
+                print("""client {}:{} >>> {}""".format(client.host, client.port, cmd))
+                msg = "Error : unknown command."
+                cmd = cmd.split()
 
-while True:
-    client_socket, addr = server_socket.accept()
-    try:
-        cmd = (client_socket.recv(1024)).decode('ascii')
-        if cmd:
-            print("""client {}:{} >>> {}""".format(addr[0], addr[1], cmd))
-            msg = "Error : unknown command."
-            cmd = cmd.split()
+                if cmd[0] == "time":
+                    msg = 'time is {}'.format(datetime.datetime.now().time())
 
-            if cmd[0] == "time":
-                msg = 'time is {}'.format(datetime.datetime.now().time())
+                client.send(msg)
 
-            client_socket.send(msg.encode('ascii'))
+        except:
+            pass
 
-    except:
-        pass
+        client.close()
 
-    client_socket.close()
+
+if __name__ == '__main__':
+    main()
