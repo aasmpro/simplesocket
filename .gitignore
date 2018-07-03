@@ -1,1 +1,4 @@
 .idea/
+SimpleSocket.egg-info
+dist
+build
