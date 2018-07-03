@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="SimpleSocket",
-    version="0.2.5",
+    version="0.2.5.1",
     author="Abolfazl Amiri",
     author_email="aa.smpro@gmail.com",
     description="simple implementation of python socket for creating server/client based programs supporting threading.",

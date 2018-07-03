@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: SimpleSocket
-Version: 0.2.5
+Version: 0.2.5.1
 Summary: simple implementation of python socket for creating server/client based programs supporting threading.
 Home-page: https://github.com/aasmpro/simplesocket
 Author: Abolfazl Amiri
