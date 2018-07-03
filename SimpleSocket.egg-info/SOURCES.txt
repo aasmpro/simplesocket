@@ -1,0 +1,8 @@
+README.md
+setup.py
+SimpleSocket/SimpleSocket.py
+SimpleSocket/__init__.py
+SimpleSocket.egg-info/PKG-INFO
+SimpleSocket.egg-info/SOURCES.txt
+SimpleSocket.egg-info/dependency_links.txt
+SimpleSocket.egg-info/top_level.txt

@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: SimpleSocket
+Version: 0.2.5
+Summary: simple implementation of python socket for creating server/client based programs supporting threading.
+Home-page: https://github.com/aasmpro/simplesocket
+Author: Abolfazl Amiri
+Author-email: aa.smpro@gmail.com
+License: UNKNOWN
+Description: # SimpleSocket
+        simple implementation of python socket for creating server/client based programs supporting threading.
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: unlicensed
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Network :: Socket Programming
+Description-Content-Type: text/markdown
