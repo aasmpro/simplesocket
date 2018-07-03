@@ -10,7 +10,7 @@ Description: # SimpleSocket
         simple implementation of python socket for creating server/client based programs supporting threading.
         
 Platform: UNKNOWN
-Classifier: License :: OSI Approved :: unlicensed
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.5
@@ -18,5 +18,4 @@ Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3 :: Only
 Classifier: Topic :: Internet :: WWW/HTTP
-Classifier: Topic :: Network :: Socket Programming
 Description-Content-Type: text/markdown
