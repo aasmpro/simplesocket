@@ -13,9 +13,15 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/aasmpro/simplesocket",
     packages=setuptools.find_packages(),
-    classifiers=(
-        "Programming Language :: Python :: 3",
+    classifiers=[
         "License :: OSI Approved :: unlicensed",
         "Operating System :: OS Independent",
-    ),
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3 :: Only",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Network :: Socket Programming",
+    ],
 )
