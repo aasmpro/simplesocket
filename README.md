@@ -1,2 +1,2 @@
 # SimpleSocket
-a simple python 3 socket server/client program.
+simple implementation of python socket for creating server/client based programs supporting threading.

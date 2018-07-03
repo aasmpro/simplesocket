@@ -1,6 +1,7 @@
 from SimpleSocket import SimpleClientSocket
 from threading import Thread
 import atexit
+import sys
 
 
 def client_handle(client):
@@ -16,12 +17,12 @@ def client_handle(client):
         except:
             pass
 
-        client.send("[E]")
-        client.close()
+    client.send("[E]")
+    client.close()
 
 
 def main():
-    client = SimpleClientSocket.socket_from_sys()
+    client = SimpleClientSocket.client_from_string("" if len(sys.argv) < 2 else sys.argv[1])
     print("connecting to {}:{} ...".format(client.host, client.port))
     client.connect()
     receiver_thread = Thread(target=client_handle, args=(client,))
@@ -30,8 +31,11 @@ def main():
 
 
 def at_exit(client):
-    client.send("[E]")
-    client.close()
+    try:
+        client.send("[E]")
+        client.close()
+    except:
+        pass
 
 
 if __name__ == '__main__':

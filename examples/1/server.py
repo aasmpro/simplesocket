@@ -1,10 +1,12 @@
 from SimpleSocket import SimpleServerSocket
 import datetime
 from threading import Thread
+import sys
 
 
 def main_func(client, server):
-    print("client {}:{} joined. # clients : {}".format(client.host, client.port, len(server.clients)))
+    print("{} joined. # clients : {}".format(client, len(server.clients)))
+    print(server.clients)
 
 
 def clients_handel(client, server):
@@ -12,7 +14,7 @@ def clients_handel(client, server):
         try:
             cmd = client.receive()
             if cmd not in ("[Exit]", "[E]"):
-                print("""client {}:{} >>> {}""".format(client.host, client.port, cmd))
+                print("""{} >>> {}""".format(client, cmd))
                 msg = "Error : unknown command."
                 cmd = cmd.split()
                 if cmd[0] == "time":
@@ -25,15 +27,15 @@ def clients_handel(client, server):
             else:
                 client.close()
                 server.clients.remove(client)
-                print("""client {}:{} left. # clients : {}""".format(client.host, client.port, len(server.clients)))
+                print("""{} left. #Clients : {}""".format(client, len(server.clients)))
                 break
         except:
             pass
 
 
 def main():
-    server = SimpleServerSocket.socket_from_sys()
-    print("\n\t{}\n\tserver started on {}:{}\n".format(datetime.datetime.now(), server.host, server.port))
+    server = SimpleServerSocket.server_from_string("" if len(sys.argv) < 2 else sys.argv[1])
+    print("\n\t{}\n\tStarted {}\n".format(datetime.datetime.now(), server))
     server.listen()
     accept_thread = Thread(server.accept_thread(clients_handel, main_func))
     accept_thread.start()
