@@ -1,6 +1,5 @@
-from SimpleSocket import SimpleServerSocket
+from simplesocket import SimpleServer
 import datetime
-from threading import Thread
 from random import randint
 import time
 import sys
@@ -16,15 +15,12 @@ def set_random_list():
     random_list = [randint(0, 100) for i in range(100)]
 
 
-def main_func(client, server):
+def clients_handel(client, server):
+    global received_data, sent_data
     print("client {}:{} joined. # clients : {}".format(client.host, client.port, len(server.clients)))
     server.broadcast("{} clients are joined.".format(len(server.clients)))
     if len(server.clients) == 5:
         print("5 clients are connected, sending data to clients :\n")
-
-
-def clients_handel(client, server):
-    global received_data, sent_data
     end = False
     getting_input = False
     sending_data = True
@@ -99,12 +95,9 @@ def clients_handel(client, server):
 
 def main():
     set_random_list()
-    server = SimpleServerSocket.server_from_string("" if len(sys.argv) < 2 else sys.argv[1])
+    server = SimpleServer.server_from_string("" if len(sys.argv) < 2 else sys.argv[1])
     print("\n\t{}\n\t{}\n".format(datetime.datetime.now(), str(server)))
-    server.listen(max_connections=10)
-    accept_thread = Thread(server.accept_thread(clients_handel, main_func))
-    accept_thread.start()
-    accept_thread.join()
+    server.run(clients_handel, 10)
 
 
 if __name__ == '__main__':

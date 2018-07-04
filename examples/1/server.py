@@ -1,15 +1,10 @@
-from SimpleSocket import SimpleServerSocket
-import datetime
-from threading import Thread
+from simplesocket import SimpleServer
+from datetime import datetime
 import sys
 
 
-def main_func(client, server):
-    print("{} joined. # clients : {}".format(client, len(server.clients)))
-    print(server.clients)
-
-
 def clients_handel(client, server):
+    print("{} joined. # clients : {}".format(client, len(server.clients)))
     while True:
         try:
             cmd = client.receive()
@@ -18,7 +13,7 @@ def clients_handel(client, server):
                 msg = "Error : unknown command."
                 cmd = cmd.split()
                 if cmd[0] == "time":
-                    msg = 'time is {}'.format(datetime.datetime.now().time())
+                    msg = 'time is {}'.format(datetime.now().time())
                     client.send(msg)
                 elif cmd[0] == "[ALL]":
                     server.broadcast(" ".join(cmd[1:]))
@@ -34,12 +29,9 @@ def clients_handel(client, server):
 
 
 def main():
-    server = SimpleServerSocket.server_from_string("" if len(sys.argv) < 2 else sys.argv[1])
-    print("\n\t{}\n\tStarted {}\n".format(datetime.datetime.now(), server))
-    server.listen()
-    accept_thread = Thread(server.accept_thread(clients_handel, main_func))
-    accept_thread.start()
-    accept_thread.join()
+    server = SimpleServer.server_from_string("" if len(sys.argv) < 2 else sys.argv[1])
+    print("\n\t{}\n\tStarted {}\n".format(datetime.now(), server))
+    server.run(clients_handel)
 
 
 if __name__ == '__main__':

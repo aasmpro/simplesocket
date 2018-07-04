@@ -1,5 +1,4 @@
-from SimpleSocket import SimpleClientSocket
-from threading import Thread
+from simplesocket import SimpleClient
 import time
 import sys
 
@@ -33,12 +32,9 @@ def client_handle(client):
 
 
 def main():
-    client = SimpleClientSocket.client_from_string("" if len(sys.argv) < 2 else sys.argv[1])
+    client = SimpleClient.client_from_string("" if len(sys.argv) < 2 else sys.argv[1])
     print("connecting to {}:{} ...".format(client.host, client.port))
-    client.connect()
-    print("connected.".format(client.host, client.port))
-    receiver_thread = Thread(target=client_handle, args=(client,))
-    receiver_thread.start()
+    client.run(client_handle)
 
 
 if __name__ == '__main__':

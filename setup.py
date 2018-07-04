@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="SimpleSocket",
-    version="0.2.5.1",
+    name="simplesocket",
+    version="0.3",
     author="Abolfazl Amiri",
     author_email="aa.smpro@gmail.com",
     description="simple implementation of python socket for creating server/client based programs supporting threading.",
@@ -20,7 +20,6 @@ setuptools.setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3 :: Only",
-        "Topic :: Internet :: WWW/HTTP"
+        "Programming Language :: Python :: 3 :: Only"
     ],
 )
